@@ -53,8 +53,19 @@ const getRandomQuote = () => {
   return currentQuote;
 }
 
-//function to call the random quote function, generate html, check existence of citation
-//and year, and then print the current quote to the page
+//function to change the background color of the body element
+const backgroundColor = () => {
+  let red = Math.floor(Math.random() * 256);
+  let green = Math.floor(Math.random() * 256);
+  let blue = Math.floor(Math.random() * 256);
+  //sets a number value to each color in rgb format for CSS
+  let rgbColor = `rgb(${red}, ${green}, ${blue})`
+  //had to look up how to change set the background color: https://www.w3schools.com/jsref/prop_style_backgroundcolor.asp
+  document.body.style.backgroundColor = rgbColor;
+}
+
+// function to call the random quote function, generate html, check existence of citation
+// year, and team, and then print the current quote to the page
 const printQuote = () => {
   //calls getRandomQuote function
   let randomQuote = getRandomQuote();
@@ -77,8 +88,18 @@ const printQuote = () => {
   html += `</p>`
   //prints the current quote and properties to the page
   document.getElementById('quote-box').innerHTML = html; 
+  //executes the background color function
+  backgroundColor();
 }
 
+//function to refresh the display every 10 seconds
+//had to look this up: https://www.w3schools.com/jsref/met_win_setinterval.asp
+let refreshQuote = () => {
+  refresh = setInterval(printQuote, 10000)
+}
+
+//calls the refresh quote
+refreshQuote();
 /***
  * click event listener for the print quote button
  * DO NOT CHANGE THE CODE BELOW!!
